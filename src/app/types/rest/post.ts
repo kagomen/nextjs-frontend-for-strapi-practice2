@@ -10,10 +10,10 @@ export interface Post {
   publishedAt: string
 }
 
-export type PostsResponse = {
+export interface PostsResponse {
   data: Post[]
 }
 
-export type PostResponse = {
+export interface PostResponse {
   data: Post
 }

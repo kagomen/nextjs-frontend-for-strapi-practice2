@@ -1,13 +1,13 @@
 import { BlocksContent } from "@strapi/blocks-react-renderer"
 
-export type PostsResponse = {
+export interface PostsResponse {
   posts: {
     title: string
     documentId: string
   }[]
 }
 
-export type PostResponse = {
+export interface PostResponse {
   post: {
     title: string
     content: BlocksContent
