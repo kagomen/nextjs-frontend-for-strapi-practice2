@@ -7,11 +7,15 @@ export default async function Home() {
     <div>
       <h2>GraphQL Posts</h2>
       <ul>
-        {posts.map((post) => (
-          <li key={post.documentId}>
-            <Link href={`/graphql-posts/${post.documentId}`}>{post.title}</Link>
-          </li>
-        ))}
+        {posts
+          ?.filter((post) => post !== null)
+          .map((post) => (
+            <li key={post.documentId}>
+              <Link href={`/graphql-posts/${post.documentId}`}>
+                {post.title || "無題"}
+              </Link>
+            </li>
+          ))}
       </ul>
     </div>
   )
