@@ -1,4 +1,4 @@
-import { getPost } from "@/app/services/graphql/post"
+import { getPost } from "@/services/graphql/post"
 import { BlocksRenderer } from "@strapi/blocks-react-renderer"
 
 type Props = {

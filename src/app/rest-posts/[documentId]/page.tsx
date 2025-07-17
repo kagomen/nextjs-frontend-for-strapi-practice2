@@ -1,4 +1,4 @@
-import { getPost } from "@/app/services/rest/post"
+import { getPost } from "@/services/rest/post"
 import { BlocksRenderer } from "@strapi/blocks-react-renderer"
 
 type Props = {

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { getPosts } from "../services/graphql/post"
+import { getPosts } from "../../services/graphql/post"
 
 export default async function Home() {
   const posts = await getPosts()
