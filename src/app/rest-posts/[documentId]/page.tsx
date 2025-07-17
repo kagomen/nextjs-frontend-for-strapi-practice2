@@ -1,12 +1,5 @@
-import { apiUrl } from "@/app/constants/constants"
-import { Post } from "@/app/types/post"
+import { getPost } from "@/app/services/rest/post"
 import { BlocksRenderer } from "@strapi/blocks-react-renderer"
-
-async function getPost(documentId: string) {
-  const res = await fetch(`${apiUrl}/api/posts/${documentId}`)
-  const data = await res.json()
-  return data.data
-}
 
 type Props = {
   params: Promise<{ documentId: string }>
@@ -14,7 +7,7 @@ type Props = {
 
 export default async function PostPage({ params }: Props) {
   const { documentId } = await params
-  const post: Post | null = await getPost(documentId)
+  const post = await getPost(documentId)
 
   if (!post) return <div>nothing</div>
 

@@ -9,3 +9,11 @@ export interface Post {
   updatedAt: string
   publishedAt: string
 }
+
+export type PostsResponse = {
+  data: Post[]
+}
+
+export type PostResponse = {
+  data: Post
+}
