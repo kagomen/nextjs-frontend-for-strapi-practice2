@@ -9,7 +9,7 @@ export default async function PostPage({ params }: Props) {
   const { documentId } = await params
   const post = await getPost(documentId)
 
-  if (!post) return <div>nothing</div>
+  if (!post) throw new Error("failed to get post")
 
   return (
     <article>
