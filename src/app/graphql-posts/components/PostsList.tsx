@@ -1,6 +1,6 @@
 "use client"
 
-import { getMorePosts } from "@/app/actions/post"
+import { getMorePosts } from "@/actions/post"
 import { Pagination, Post } from "@/graphql/generated/graphql"
 import Link from "next/link"
 import { useState } from "react"
