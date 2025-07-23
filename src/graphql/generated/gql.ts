@@ -14,11 +14,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query GetPosts($page: Int, $pageSize: Int) {\n    posts_connection(pagination: { page: $page, pageSize: $pageSize }) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n": typeof types.GetPostsDocument,
+    "\n  query GetPosts($page: Int, $pageSize: Int, $searchText: String) {\n    posts_connection(\n      pagination: { page: $page, pageSize: $pageSize }\n      filters: { title: { containsi: $searchText } }\n    ) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n": typeof types.GetPostsDocument,
     "\n  query GetPost($documentId: ID!) {\n    post(documentId: $documentId) {\n      documentId\n      title\n      content\n      publishedAt\n    }\n  }\n": typeof types.GetPostDocument,
 };
 const documents: Documents = {
-    "\n  query GetPosts($page: Int, $pageSize: Int) {\n    posts_connection(pagination: { page: $page, pageSize: $pageSize }) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n": types.GetPostsDocument,
+    "\n  query GetPosts($page: Int, $pageSize: Int, $searchText: String) {\n    posts_connection(\n      pagination: { page: $page, pageSize: $pageSize }\n      filters: { title: { containsi: $searchText } }\n    ) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n": types.GetPostsDocument,
     "\n  query GetPost($documentId: ID!) {\n    post(documentId: $documentId) {\n      documentId\n      title\n      content\n      publishedAt\n    }\n  }\n": types.GetPostDocument,
 };
 
@@ -39,7 +39,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GetPosts($page: Int, $pageSize: Int) {\n    posts_connection(pagination: { page: $page, pageSize: $pageSize }) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetPosts($page: Int, $pageSize: Int) {\n    posts_connection(pagination: { page: $page, pageSize: $pageSize }) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query GetPosts($page: Int, $pageSize: Int, $searchText: String) {\n    posts_connection(\n      pagination: { page: $page, pageSize: $pageSize }\n      filters: { title: { containsi: $searchText } }\n    ) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetPosts($page: Int, $pageSize: Int, $searchText: String) {\n    posts_connection(\n      pagination: { page: $page, pageSize: $pageSize }\n      filters: { title: { containsi: $searchText } }\n    ) {\n      nodes {\n        documentId\n        title\n      }\n      pageInfo {\n        page\n        pageSize\n        pageCount\n        total\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

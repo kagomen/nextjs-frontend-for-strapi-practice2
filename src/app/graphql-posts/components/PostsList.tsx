@@ -1,18 +1,24 @@
 "use client"
 
 import { getMorePosts } from "@/actions/post"
-import { Pagination, Post } from "@/graphql/generated/graphql"
+import { GetPostsQuery, Pagination } from "@/graphql/generated/graphql"
 import Link from "next/link"
 import { useState } from "react"
 
+type PostListItem = NonNullable<
+  GetPostsQuery["posts_connection"]
+>["nodes"][number]
+
 type Props = {
-  initialPosts: Post[]
-  initialPageInfo: Pagination
+  // initialPostsの型をPost[]にすると、GET_POSTSのレスポンスにcommentsを含まないといけないため、
+  // 今回はGetPostsQueryの戻り値の型を作成し、利用する
+  posts: PostListItem[]
+  pageInfo: Pagination
 }
 
-export function PostsList({ initialPosts, initialPageInfo }: Props) {
-  const [posts, setPosts] = useState(initialPosts)
-  const [pageInfo, setPageInfo] = useState(initialPageInfo)
+export function PostsList(props: Props) {
+  const [posts, setPosts] = useState(props.posts)
+  const [pageInfo, setPageInfo] = useState(props.pageInfo)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleGetMorePosts = async () => {

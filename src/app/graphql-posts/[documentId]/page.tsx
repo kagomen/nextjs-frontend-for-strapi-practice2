@@ -23,6 +23,7 @@ export default async function PostPage({ params }: Props) {
         <BlocksRenderer content={post.content} />
       </article>
 
+      {/* ログインユーザにのみ表示されるコメントフォーム */}
       {user && <CommentForm />}
     </div>
   )
