@@ -21,7 +21,6 @@ export function PostsList(props: Props) {
   const [pageInfo, setPageInfo] = useState(props.pageInfo)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  // propsが変更されたときにステートを更新
   useEffect(() => {
     setPosts(props.posts)
     setPageInfo(props.pageInfo)
@@ -36,11 +35,13 @@ export function PostsList(props: Props) {
       return
     }
 
+    // エラーメッセージをクリア
+    setErrorMessage(null)
     setPosts((prevPosts) => [...prevPosts, ...data.nodes])
     setPageInfo(data.pageInfo)
   }
 
-  const hasMore = pageInfo ? pageInfo.page < pageInfo.pageCount : false
+  const hasMorePosts = pageInfo ? pageInfo.page < pageInfo.pageCount : false
 
   return (
     <div>
@@ -55,9 +56,8 @@ export function PostsList(props: Props) {
             </li>
           ))}
       </ul>
-      {errorMessage ? (
-        <div>{errorMessage}</div>
-      ) : hasMore ? (
+      {errorMessage && <div>{errorMessage}</div>}
+      {hasMorePosts ? (
         <button onClick={handleGetMorePosts}>もっと読む</button>
       ) : (
         <p>すべて表示済み</p>

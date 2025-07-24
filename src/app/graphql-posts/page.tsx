@@ -1,7 +1,8 @@
 import { POSTS_PAGE_SIZE } from "@/constants/constants"
 import { getPosts } from "@/services/graphql/post"
-import { SearchForm } from "./components/SearchForm"
+import { PostsContainer } from "./components/PostsContainer"
 
+// 注: 現在は異なる実装。以下はサーバーコンポーネントだけで検索フォームを実装したときのメモ。
 // 検索処理のフロー:
 // 1. ユーザが検索フォームを送信
 // 2. GETメソッドでフォームが送信されると、フォームの内容はクエリパラメータに設定される
@@ -24,7 +25,7 @@ export default async function GraphQLPostsPage() {
   return (
     <div>
       <h2>GraphQL Posts</h2>
-      <SearchForm initialData={data} />
+      <PostsContainer initialData={data} />
     </div>
   )
 }

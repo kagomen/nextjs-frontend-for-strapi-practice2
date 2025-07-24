@@ -13,13 +13,18 @@ export async function getMorePosts(page: number) {
 }
 
 export async function searchPosts(formData: FormData) {
-  const searchText = (formData.get("searchText") as string) || ""
+  try {
+    const searchText = (formData.get("searchText") as string) || ""
 
-  const data = await getPosts({
-    page: 1,
-    pageSize: POSTS_PAGE_SIZE,
-    searchText,
-  })
+    const data = await getPosts({
+      page: 1,
+      pageSize: POSTS_PAGE_SIZE,
+      searchText,
+    })
 
-  return data
+    return data
+  } catch (error) {
+    console.error("failed to search posts: ", error)
+    return null
+  }
 }
