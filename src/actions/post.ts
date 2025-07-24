@@ -11,3 +11,15 @@ export async function getMorePosts(page: number) {
     return null
   }
 }
+
+export async function searchPosts(formData: FormData) {
+  const searchText = (formData.get("searchText") as string) || ""
+
+  const data = await getPosts({
+    page: 1,
+    pageSize: POSTS_PAGE_SIZE,
+    searchText,
+  })
+
+  return data
+}

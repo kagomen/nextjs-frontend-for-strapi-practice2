@@ -3,7 +3,7 @@
 import { getMorePosts } from "@/actions/post"
 import { GetPostsQuery, Pagination } from "@/graphql/generated/graphql"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 type PostListItem = NonNullable<
   GetPostsQuery["posts_connection"]
@@ -20,6 +20,12 @@ export function PostsList(props: Props) {
   const [posts, setPosts] = useState(props.posts)
   const [pageInfo, setPageInfo] = useState(props.pageInfo)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  // propsが変更されたときにステートを更新
+  useEffect(() => {
+    setPosts(props.posts)
+    setPageInfo(props.pageInfo)
+  }, [props.posts, props.pageInfo])
 
   const handleGetMorePosts = async () => {
     const data = await getMorePosts(pageInfo.page + 1)
