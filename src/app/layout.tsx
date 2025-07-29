@@ -1,7 +1,9 @@
+import { DraftBanner } from "@/components/DraftBanner"
 import { UserProvider } from "@/context/UserContext"
 import { getAuthUser } from "@/lib/auth"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
+import { draftMode } from "next/headers"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -25,12 +27,14 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const user = await getAuthUser()
+  const { isEnabled } = await draftMode()
 
   return (
     <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {isEnabled && <DraftBanner />}
         <UserProvider initialUser={user}>{children}</UserProvider>
       </body>
     </html>
