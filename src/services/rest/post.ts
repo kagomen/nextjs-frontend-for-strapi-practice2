@@ -3,7 +3,12 @@ import { apiUrl } from "../../constants/constants"
 import { PostResponse, PostsResponse } from "../../types/rest/post"
 
 export async function getPosts() {
-  const res = await fetch(`${apiUrl}/api/posts`, {
+  const { isEnabled } = await draftMode()
+
+  const url =
+    `${apiUrl}/api/posts?status=` + (isEnabled ? "draft" : "published")
+
+  const res = await fetch(url, {
     headers: { Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}` },
   })
   const data: PostsResponse = await res.json()
